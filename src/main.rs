@@ -13,10 +13,9 @@ fn main() {
     for stream in listener.incoming() { //listening for the connection
         let stream = stream.unwrap();
 
-        pool.execute(|| { //handling each stream in a thread, to concurrently handle max 4 reqs
+        pool.execute(|| { //handling each stream in a thread
             handle_connection(stream);
-        }); // every req/res happens in a new thread
-        // println!("Connection established!");
+        });
     }
 }
 
